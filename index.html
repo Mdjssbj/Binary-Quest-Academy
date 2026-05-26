@@ -25,20 +25,9 @@ color:white;
 overflow:hidden;
 }
 
-:root{
---bg:#0a0f1c;
---card:#111827;
---card2:#172033;
---blue:#2f80ff;
---green:#18d67a;
---red:#ff4d6d;
---text:#ffffff;
---muted:#90a2c4;
-}
-
 .topbar{
 height:70px;
-background:#101827;
+background:#111827;
 display:flex;
 align-items:center;
 justify-content:space-between;
@@ -49,7 +38,7 @@ border-bottom:1px solid rgba(255,255,255,0.05);
 .logo{
 font-size:24px;
 font-weight:700;
-color:var(--blue);
+color:#2f80ff;
 }
 
 .stats{
@@ -58,15 +47,14 @@ gap:15px;
 }
 
 .stat{
-background:#172033;
+background:#1a2438;
 padding:10px 18px;
 border-radius:14px;
-font-size:14px;
 }
 
 .main{
 display:grid;
-grid-template-columns:300px 1fr;
+grid-template-columns:280px 1fr;
 height:calc(100vh - 70px);
 }
 
@@ -86,7 +74,6 @@ margin-bottom:20px;
 
 .card h3{
 margin-bottom:15px;
-font-size:18px;
 }
 
 .warning{
@@ -94,12 +81,12 @@ background:#2b1f10;
 border:1px solid #ffb347;
 padding:15px;
 border-radius:14px;
+line-height:1.7;
 color:#ffce73;
-line-height:1.6;
 }
 
 .market{
-padding:25px;
+padding:20px;
 display:flex;
 flex-direction:column;
 }
@@ -109,9 +96,11 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 margin-bottom:20px;
+flex-wrap:wrap;
+gap:10px;
 }
 
-.market-info{
+.badges{
 display:flex;
 gap:10px;
 }
@@ -120,20 +109,32 @@ gap:10px;
 background:#172033;
 padding:10px 16px;
 border-radius:14px;
-font-size:14px;
+}
+
+.selects{
+display:flex;
+gap:10px;
+}
+
+select{
+background:#172033;
+color:white;
+border:none;
+padding:12px;
+border-radius:14px;
 }
 
 #chart{
-height:550px;
+height:520px;
 background:#111827;
 border-radius:24px;
 overflow:hidden;
 }
 
 .controls{
-margin-top:20px;
 display:flex;
 gap:15px;
+margin-top:20px;
 }
 
 .btn{
@@ -141,14 +142,18 @@ flex:1;
 padding:18px;
 border:none;
 border-radius:18px;
-font-size:18px;
+font-size:20px;
 font-weight:700;
 cursor:pointer;
 transition:0.3s;
 }
 
+.btn:hover{
+transform:translateY(-3px);
+}
+
 .up{
-background:linear-gradient(135deg,#18d67a,#11b967);
+background:linear-gradient(135deg,#18d67a,#10b967);
 color:white;
 }
 
@@ -157,43 +162,24 @@ background:linear-gradient(135deg,#ff4d6d,#ff2950);
 color:white;
 }
 
-.btn:hover{
-transform:translateY(-3px);
-}
-
 .result{
 margin-top:20px;
 background:#172033;
 padding:20px;
 border-radius:18px;
-font-size:18px;
 display:none;
+font-size:18px;
 }
 
-.selects{
-display:flex;
-gap:10px;
-margin-bottom:20px;
-}
-
-select{
-background:#172033;
-border:none;
-color:white;
-padding:12px;
-border-radius:14px;
-font-size:14px;
-}
-
-.levelbar{
+.progress{
 margin-top:15px;
 height:12px;
-background:#1f2c47;
+background:#24324f;
 border-radius:30px;
 overflow:hidden;
 }
 
-.levelprogress{
+.progress-bar{
 height:100%;
 width:0%;
 background:linear-gradient(90deg,#2f80ff,#18d67a);
@@ -205,7 +191,7 @@ line-height:1.8;
 color:#dbe4ff;
 }
 
-@media(max-width:1000px){
+@media(max-width:900px){
 
 .main{
 grid-template-columns:1fr;
@@ -256,7 +242,7 @@ Accuracy: <span id="accuracy">0%</span>
 
 <div class="card">
 
-<h3>Правило трейдингу</h3>
+<h3>Правило дисципліни</h3>
 
 <div class="warning">
 ❗ Я не торгую перші 15 хв на відкритті нової години і останні 15 хв до закриття – як правило.
@@ -270,19 +256,17 @@ Accuracy: <span id="accuracy">0%</span>
 
 <div class="lesson">
 
-✔ Аналіз тренду<br><br>
+✔ Trend Analysis<br><br>
 
 ✔ Support / Resistance<br><br>
 
-✔ Свічкові патерни<br><br>
+✔ Candle Patterns<br><br>
 
-✔ Market Structure<br><br>
+✔ Liquidity<br><br>
 
 ✔ Fake Breakout<br><br>
 
-✔ Volatility zones<br><br>
-
-✔ Liquidity
+✔ Market Structure
 
 </div>
 
@@ -292,8 +276,8 @@ Accuracy: <span id="accuracy">0%</span>
 
 <h3>Прогрес</h3>
 
-<div class="levelbar">
-<div class="levelprogress" id="levelprogress"></div>
+<div class="progress">
+<div class="progress-bar" id="progressBar"></div>
 </div>
 
 </div>
@@ -304,17 +288,17 @@ Accuracy: <span id="accuracy">0%</span>
 
 <div class="market-top">
 
-<div class="market-info">
+<div class="badges">
 
 <div class="badge">
 EUR/USD
 </div>
 
-<div class="badge">
-1M
+<div class="badge" id="tfBadge">
+1 min
 </div>
 
-<div class="badge" id="expiration">
+<div class="badge" id="expBadge">
 EXP: 30 sec
 </div>
 
@@ -323,17 +307,21 @@ EXP: 30 sec
 <div class="selects">
 
 <select id="timeframe">
+
 <option>5 sec</option>
 <option>15 sec</option>
 <option selected>1 min</option>
 <option>5 min</option>
+
 </select>
 
-<select id="expSelect">
+<select id="expiration">
+
 <option>15 sec</option>
 <option selected>30 sec</option>
 <option>1 min</option>
 <option>5 min</option>
+
 </select>
 
 </div>
@@ -344,11 +332,11 @@ EXP: 30 sec
 
 <div class="controls">
 
-<button class="btn up" onclick="makePrediction('up')">
+<button class="btn up" onclick="predict('up')">
 ⬆ UP
 </button>
 
-<button class="btn down" onclick="makePrediction('down')">
+<button class="btn down" onclick="predict('down')">
 ⬇ DOWN
 </button>
 
@@ -362,32 +350,16 @@ EXP: 30 sec
 
 <script>
 
-document.getElementById('timeframe').addEventListener('change',e=>{
-
-const tf=e.target.value;
-
-document.querySelectorAll('.badge')[1].innerText=tf;
-
-});
+const chart = LightweightCharts.createChart(document.getElementById('chart'),{
 
 layout:{
-background:{
-color:'#111827'
-},
+background:{color:'#111827'},
 textColor:'#dbe4ff'
 },
 
 grid:{
-vertLines:{
-color:'rgba(255,255,255,0.03)'
-},
-horzLines:{
-color:'rgba(255,255,255,0.03)'
-}
-},
-
-crosshair:{
-mode:1
+vertLines:{color:'rgba(255,255,255,0.03)'},
+horzLines:{color:'rgba(255,255,255,0.03)'}
 },
 
 rightPriceScale:{
@@ -400,7 +372,7 @@ borderColor:'rgba(255,255,255,0.1)'
 
 });
 
-const candleSeries = chart.addSeries(LightweightCharts.CandlestickSeries,{
+const candleSeries = chart.addCandlestickSeries({
 
 upColor:'#18d67a',
 downColor:'#ff4d6d',
@@ -410,21 +382,21 @@ wickDownColor:'#ff4d6d'
 
 });
 
-let candles = [];
+let candles=[];
 
-let time = Math.floor(Date.now()/1000)-1000;
+let time=Math.floor(Date.now()/1000)-3000;
 
-let price = 1.1000;
+let price=1.1000;
 
-for(let i=0;i<50;i++){
+for(let i=0;i<80;i++){
 
-const open = price;
+const open=price;
 
-const close = open + (Math.random()-0.5)*0.01;
+const close=open+(Math.random()-0.5)*0.02;
 
-const high = Math.max(open,close)+Math.random()*0.005;
+const high=Math.max(open,close)+Math.random()*0.01;
 
-const low = Math.min(open,close)-Math.random()*0.005;
+const low=Math.min(open,close)-Math.random()*0.01;
 
 candles.push({
 
@@ -436,7 +408,7 @@ close
 
 });
 
-price = close;
+price=close;
 
 }
 
@@ -444,7 +416,7 @@ candleSeries.setData(candles);
 
 chart.timeScale().fitContent();
 
-let user = JSON.parse(localStorage.getItem('binaryVision')) || {
+let user=JSON.parse(localStorage.getItem('binaryVision')) || {
 
 xp:0,
 level:1,
@@ -467,27 +439,28 @@ document.getElementById('level').innerText=user.level;
 
 const total=user.wins+user.losses;
 
-const acc=total===0 ? 0 : Math.round((user.wins/total)*100);
+const accuracy=total===0 ? 0 :
+Math.round((user.wins/total)*100);
 
-document.getElementById('accuracy').innerText=acc+'%';
+document.getElementById('accuracy').innerText=accuracy+'%';
 
-document.getElementById('levelprogress').style.width=(user.xp%200)/2+'%';
+document.getElementById('progressBar').style.width=(user.xp%200)/2+'%';
 
 }
 
-function nextCandle(){
+function addNewCandle(){
 
-const last = candles[candles.length-1];
+const last=candles[candles.length-1];
 
-const open = last.close;
+const open=last.close;
 
-const close = open + (Math.random()-0.5)*0.02;
+const close=open+(Math.random()-0.5)*0.03;
 
-const high = Math.max(open,close)+Math.random()*0.005;
+const high=Math.max(open,close)+Math.random()*0.01;
 
-const low = Math.min(open,close)-Math.random()*0.005;
+const low=Math.min(open,close)-Math.random()*0.01;
 
-const candle = {
+const candle={
 
 time:last.time+60,
 open,
@@ -505,18 +478,20 @@ return candle;
 
 }
 
-function makePrediction(direction){
+function predict(direction){
 
-const resultBox=document.getElementById('result');
+const candle=addNewCandle();
 
-const newCandle=nextCandle();
+const result=document.getElementById('result');
 
-const wentUp=newCandle.close>newCandle.open;
+const wentUp=candle.close>candle.open;
 
-const correct=(direction==='up' && wentUp)
-|| (direction==='down' && !wentUp);
+const correct=
+(direction==='up' && wentUp)
+||
+(direction==='down' && !wentUp);
 
-resultBox.style.display='block';
+result.style.display='block';
 
 if(correct){
 
@@ -524,17 +499,17 @@ user.xp+=50;
 
 user.wins++;
 
-resultBox.innerHTML='✅ Правильно! +50 XP';
+result.innerHTML='✅ Правильно! +50 XP';
 
-resultBox.style.border='1px solid #18d67a';
+result.style.border='1px solid #18d67a';
 
 }else{
 
 user.losses++;
 
-resultBox.innerHTML='❌ Неправильно. Аналізуй структуру ринку уважніше.';
+result.innerHTML='❌ Неправильно. Аналізуй структуру уважніше.';
 
-resultBox.style.border='1px solid #ff4d6d';
+result.style.border='1px solid #ff4d6d';
 
 }
 
@@ -546,19 +521,17 @@ updateUI();
 
 }
 
-document.getElementById('expSelect').addEventListener('change',e=>{
+document.getElementById('timeframe')
+.addEventListener('change',function(){
 
-const value=e.target.value;
-
-document.getElementById('expiration').innerText='EXP: '+value;
+document.getElementById('tfBadge').innerText=this.value;
 
 });
 
-document.getElementById('timeframe').addEventListener('change',e=>{
+document.getElementById('expiration')
+.addEventListener('change',function(){
 
-const tf=e.target.value;
-
-document.querySelectorAll('.badge')[1].innerText=tf;
+document.getElementById('expBadge').innerText='EXP: '+this.value;
 
 });
 

@@ -20,23 +20,23 @@ box-sizing:border-box;
 
 body{
 font-family:'Inter',sans-serif;
-background:#0a0f1c;
+background:#0b1020;
 color:white;
 overflow:hidden;
 }
 
 .topbar{
 height:70px;
-background:#111827;
+background:#121a2f;
 display:flex;
-align-items:center;
 justify-content:space-between;
+align-items:center;
 padding:0 25px;
 border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
 .logo{
-font-size:24px;
+font-size:26px;
 font-weight:700;
 color:#2f80ff;
 }
@@ -47,22 +47,22 @@ gap:15px;
 }
 
 .stat{
-background:#1a2438;
+background:#1a2540;
 padding:10px 18px;
 border-radius:14px;
 }
 
 .main{
 display:grid;
-grid-template-columns:280px 1fr;
+grid-template-columns:320px 1fr;
 height:calc(100vh - 70px);
 }
 
 .sidebar{
-background:#0f1726;
+background:#111827;
 padding:20px;
-border-right:1px solid rgba(255,255,255,0.05);
 overflow:auto;
+border-right:1px solid rgba(255,255,255,0.05);
 }
 
 .card{
@@ -77,10 +77,10 @@ margin-bottom:15px;
 }
 
 .warning{
-background:#2b1f10;
+background:#2d220f;
 border:1px solid #ffb347;
-padding:15px;
-border-radius:14px;
+padding:16px;
+border-radius:16px;
 line-height:1.7;
 color:#ffce73;
 }
@@ -96,8 +96,6 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 margin-bottom:20px;
-flex-wrap:wrap;
-gap:10px;
 }
 
 .badges{
@@ -111,72 +109,92 @@ padding:10px 16px;
 border-radius:14px;
 }
 
-.selects{
-display:flex;
-gap:10px;
-}
-
-select{
-background:#172033;
-color:white;
-border:none;
-padding:12px;
-border-radius:14px;
-}
-
 #chart{
-height:520px;
+height:420px;
 background:#111827;
 border-radius:24px;
 overflow:hidden;
 }
 
-.controls{
-display:flex;
-gap:15px;
+.quiz{
 margin-top:20px;
+background:#172033;
+padding:25px;
+border-radius:24px;
 }
 
-.btn{
-flex:1;
-padding:18px;
-border:none;
-border-radius:18px;
-font-size:20px;
+.question{
+font-size:22px;
 font-weight:700;
+margin-bottom:20px;
+}
+
+.answers{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.answer-btn{
+background:#22304f;
+border:none;
+padding:18px;
+border-radius:16px;
+color:white;
 cursor:pointer;
+font-size:16px;
+text-align:left;
 transition:0.3s;
 }
 
-.btn:hover{
-transform:translateY(-3px);
-}
-
-.up{
-background:linear-gradient(135deg,#18d67a,#10b967);
-color:white;
-}
-
-.down{
-background:linear-gradient(135deg,#ff4d6d,#ff2950);
-color:white;
+.answer-btn:hover{
+background:#2d426e;
+transform:translateY(-2px);
 }
 
 .result{
 margin-top:20px;
-background:#172033;
-padding:20px;
-border-radius:18px;
+padding:18px;
+border-radius:16px;
 display:none;
-font-size:18px;
+line-height:1.7;
+}
+
+.correct{
+background:rgba(24,214,122,0.1);
+border:1px solid #18d67a;
+}
+
+.wrong{
+background:rgba(255,77,109,0.1);
+border:1px solid #ff4d6d;
+}
+
+.next-btn{
+margin-top:20px;
+background:linear-gradient(135deg,#2f80ff,#5b6cff);
+border:none;
+padding:16px;
+width:100%;
+border-radius:16px;
+color:white;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+display:none;
+}
+
+.lesson{
+line-height:1.9;
+color:#dbe4ff;
 }
 
 .progress{
-margin-top:15px;
 height:12px;
 background:#24324f;
 border-radius:30px;
 overflow:hidden;
+margin-top:15px;
 }
 
 .progress-bar{
@@ -186,12 +204,7 @@ background:linear-gradient(90deg,#2f80ff,#18d67a);
 transition:0.4s;
 }
 
-.lesson{
-line-height:1.8;
-color:#dbe4ff;
-}
-
-@media(max-width:900px){
+@media(max-width:1000px){
 
 .main{
 grid-template-columns:1fr;
@@ -202,7 +215,7 @@ display:none;
 }
 
 #chart{
-height:400px;
+height:300px;
 }
 
 }
@@ -252,21 +265,21 @@ Accuracy: <span id="accuracy">0%</span>
 
 <div class="card">
 
-<h3>Навчання</h3>
+<h3>Що ти вчиш</h3>
 
 <div class="lesson">
 
-✔ Trend Analysis<br><br>
+✔ Аналіз тренду<br><br>
+
+✔ Fake breakout<br><br>
 
 ✔ Support / Resistance<br><br>
 
-✔ Candle Patterns<br><br>
+✔ Candle patterns<br><br>
 
-✔ Liquidity<br><br>
+✔ Market structure<br><br>
 
-✔ Fake Breakout<br><br>
-
-✔ Market Structure
+✔ Liquidity
 
 </div>
 
@@ -294,35 +307,13 @@ Accuracy: <span id="accuracy">0%</span>
 EUR/USD
 </div>
 
-<div class="badge" id="tfBadge">
-1 min
+<div class="badge">
+1 MIN
 </div>
 
-<div class="badge" id="expBadge">
-EXP: 30 sec
+<div class="badge">
+QUIZ MODE
 </div>
-
-</div>
-
-<div class="selects">
-
-<select id="timeframe">
-
-<option>5 sec</option>
-<option>15 sec</option>
-<option selected>1 min</option>
-<option>5 min</option>
-
-</select>
-
-<select id="expiration">
-
-<option>15 sec</option>
-<option selected>30 sec</option>
-<option>1 min</option>
-<option>5 min</option>
-
-</select>
 
 </div>
 
@@ -330,19 +321,21 @@ EXP: 30 sec
 
 <div id="chart"></div>
 
-<div class="controls">
+<div class="quiz">
 
-<button class="btn up" onclick="predict('up')">
-⬆ UP
-</button>
+<div class="question" id="question">
+Що найімовірніше станеться далі?
+</div>
 
-<button class="btn down" onclick="predict('down')">
-⬇ DOWN
+<div class="answers" id="answers"></div>
+
+<div class="result" id="result"></div>
+
+<button class="next-btn" id="nextBtn">
+Наступний сценарій
 </button>
 
 </div>
-
-<div class="result" id="result"></div>
 
 </div>
 
@@ -350,73 +343,49 @@ EXP: 30 sec
 
 <script>
 
-const chart = LightweightCharts.createChart(document.getElementById('chart'),{
+const scenarios=[
 
-layout:{
-background:{color:'#111827'},
-textColor:'#dbe4ff'
+{
+question:'На графіку видно сильний downtrend та bullish rejection від support. Що ймовірніше?',
+answers:[
+'Ціна продовжить падіння',
+'Можливий short-term reversal вверх',
+'Почнеться флет'
+],
+correct:1,
+explanation:'Після rejection від support і сильної реакції покупців можливий short-term reversal.',
+trend:'down'
 },
 
-grid:{
-vertLines:{color:'rgba(255,255,255,0.03)'},
-horzLines:{color:'rgba(255,255,255,0.03)'}
+{
+question:'Ціна кілька разів не може пробити resistance. Що ймовірніше?',
+answers:[
+'Breakout вверх',
+'Rejection вниз',
+'Повна зупинка ринку'
+],
+correct:1,
+explanation:'Кілька rejection від resistance часто дають відкат вниз.',
+trend:'up'
 },
 
-rightPriceScale:{
-borderColor:'rgba(255,255,255,0.1)'
-},
-
-timeScale:{
-borderColor:'rgba(255,255,255,0.1)'
+{
+question:'Після сильного імпульсу вверх з’явився fake breakout. Що це може означати?',
+answers:[
+'Продовження росту',
+'Liquidity sweep та падіння',
+'Нічого'
+],
+correct:1,
+explanation:'Fake breakout часто означає liquidity grab перед рухом вниз.',
+trend:'fake'
 }
 
-});
+];
 
-const candleSeries = chart.addCandlestickSeries({
+let current=0;
 
-upColor:'#18d67a',
-downColor:'#ff4d6d',
-borderVisible:false,
-wickUpColor:'#18d67a',
-wickDownColor:'#ff4d6d'
-
-});
-
-let candles=[];
-
-let time=Math.floor(Date.now()/1000)-3000;
-
-let price=1.1000;
-
-for(let i=0;i<80;i++){
-
-const open=price;
-
-const close=open+(Math.random()-0.5)*0.02;
-
-const high=Math.max(open,close)+Math.random()*0.01;
-
-const low=Math.min(open,close)-Math.random()*0.01;
-
-candles.push({
-
-time:time+i*60,
-open,
-high,
-low,
-close
-
-});
-
-price=close;
-
-}
-
-candleSeries.setData(candles);
-
-chart.timeScale().fitContent();
-
-let user=JSON.parse(localStorage.getItem('binaryVision')) || {
+let user=JSON.parse(localStorage.getItem('academyData')) || {
 
 xp:0,
 level:1,
@@ -427,7 +396,7 @@ losses:0
 
 function save(){
 
-localStorage.setItem('binaryVision',JSON.stringify(user));
+localStorage.setItem('academyData',JSON.stringify(user));
 
 }
 
@@ -448,68 +417,141 @@ document.getElementById('progressBar').style.width=(user.xp%200)/2+'%';
 
 }
 
-function addNewCandle(){
+const chart=LightweightCharts.createChart(document.getElementById('chart'),{
 
-const last=candles[candles.length-1];
+layout:{
+background:{color:'#111827'},
+textColor:'#dbe4ff'
+},
 
-const open=last.close;
+grid:{
+vertLines:{color:'rgba(255,255,255,0.03)'},
+horzLines:{color:'rgba(255,255,255,0.03)'}
+}
 
-const close=open+(Math.random()-0.5)*0.03;
+});
 
-const high=Math.max(open,close)+Math.random()*0.01;
+const series=chart.addCandlestickSeries({
 
-const low=Math.min(open,close)-Math.random()*0.01;
+upColor:'#18d67a',
+downColor:'#ff4d6d',
+borderVisible:false,
+wickUpColor:'#18d67a',
+wickDownColor:'#ff4d6d'
 
-const candle={
+});
 
-time:last.time+60,
+function generateChart(type){
+
+let data=[];
+
+let time=Math.floor(Date.now()/1000)-3000;
+
+let price=1.10;
+
+for(let i=0;i<40;i++){
+
+let move;
+
+if(type==='down'){
+
+move=(Math.random()*-0.01)+0.002;
+
+}else if(type==='up'){
+
+move=(Math.random()*0.01)-0.002;
+
+}else{
+
+move=(Math.random()-0.5)*0.02;
+
+}
+
+const open=price;
+
+const close=open+move;
+
+const high=Math.max(open,close)+Math.random()*0.005;
+
+const low=Math.min(open,close)-Math.random()*0.005;
+
+data.push({
+
+time:time+i*60,
 open,
 high,
 low,
 close
 
-};
+});
 
-candles.push(candle);
-
-candleSeries.update(candle);
-
-return candle;
+price=close;
 
 }
 
-function predict(direction){
+series.setData(data);
 
-const candle=addNewCandle();
+chart.timeScale().fitContent();
+
+}
+
+function loadScenario(){
+
+const s=scenarios[current];
+
+document.getElementById('question').innerText=s.question;
+
+const answers=document.getElementById('answers');
+
+answers.innerHTML='';
+
+document.getElementById('result').style.display='none';
+
+document.getElementById('nextBtn').style.display='none';
+
+s.answers.forEach((a,index)=>{
+
+const btn=document.createElement('button');
+
+btn.className='answer-btn';
+
+btn.innerText=a;
+
+btn.onclick=()=>checkAnswer(index);
+
+answers.appendChild(btn);
+
+});
+
+generateChart(s.trend);
+
+}
+
+function checkAnswer(index){
+
+const s=scenarios[current];
 
 const result=document.getElementById('result');
 
-const wentUp=candle.close>candle.open;
-
-const correct=
-(direction==='up' && wentUp)
-||
-(direction==='down' && !wentUp);
-
 result.style.display='block';
 
-if(correct){
+if(index===s.correct){
 
 user.xp+=50;
 
 user.wins++;
 
-result.innerHTML='✅ Правильно! +50 XP';
+result.className='result correct';
 
-result.style.border='1px solid #18d67a';
+result.innerHTML='✅ Правильно!<br><br>'+s.explanation;
 
 }else{
 
 user.losses++;
 
-result.innerHTML='❌ Неправильно. Аналізуй структуру уважніше.';
+result.className='result wrong';
 
-result.style.border='1px solid #ff4d6d';
+result.innerHTML='❌ Неправильно.<br><br>'+s.explanation;
 
 }
 
@@ -519,23 +561,27 @@ save();
 
 updateUI();
 
+document.getElementById('nextBtn').style.display='block';
+
 }
 
-document.getElementById('timeframe')
-.addEventListener('change',function(){
+document.getElementById('nextBtn').onclick=()=>{
 
-document.getElementById('tfBadge').innerText=this.value;
+current++;
 
-});
+if(current>=scenarios.length){
 
-document.getElementById('expiration')
-.addEventListener('change',function(){
+current=0;
 
-document.getElementById('expBadge').innerText='EXP: '+this.value;
+}
 
-});
+loadScenario();
+
+};
 
 updateUI();
+
+loadScenario();
 
 </script>
 

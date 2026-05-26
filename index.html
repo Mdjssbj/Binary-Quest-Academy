@@ -362,7 +362,13 @@ EXP: 30 sec
 
 <script>
 
-const chart = LightweightCharts.createChart(document.getElementById('chart'),{
+document.getElementById('timeframe').addEventListener('change',e=>{
+
+const tf=e.target.value;
+
+document.querySelectorAll('.badge')[1].innerText=tf;
+
+});
 
 layout:{
 background:{
@@ -542,7 +548,17 @@ updateUI();
 
 document.getElementById('expSelect').addEventListener('change',e=>{
 
-document.getElementById('expiration').innerText='EXP: '+e.target.value;
+const value=e.target.value;
+
+document.getElementById('expiration').innerText='EXP: '+value;
+
+});
+
+document.getElementById('timeframe').addEventListener('change',e=>{
+
+const tf=e.target.value;
+
+document.querySelectorAll('.badge')[1].innerText=tf;
 
 });
 
